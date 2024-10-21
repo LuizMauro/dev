@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Luiz Mauro da Rocha Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      src="https://kit.fontawesome.com/a076d05399.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+      };
+
+      // Toggle between light and dark mode
+      function toggleDarkMode() {
+        const htmlElement = document.documentElement;
+        const button = document.getElementById("button-dark-toggle");
+        const icon = document.getElementById("dark-mode-icon");
+
+        // Toggle the "dark" class on the HTML element
+        htmlElement.classList.toggle("dark");
+
+        // Change button text and icon based on the current mode
+        if (htmlElement.classList.contains("dark")) {
+          button.textContent = "☀️ Tema Claro";
+        } else {
+          button.textContent = "🌙 Tema Escuro";
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-300">
+    <!-- Dark Mode Toggle Button -->
+    <div class="max-w-4xl mx-auto p-6">
+      <div class="flex justify-end p-4">
+        <button
+          id="button-dark-toggle"
+          onclick="toggleDarkMode()"
+          class="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center"
+        >
+          <i id="dark-mode-icon" class="fas fa-sun mr-2"></i>
+          ☀️ Tema Claro
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="max-w-4xl mx-auto p-6">
+      <!-- Header -->
+      <header class="p-6 mb-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <h1 class="text-4xl font-bold">Luiz Mauro da Rocha</h1>
+            <p class="text-gray-600 dark:text-gray-400">Full Stack Developer</p>
+            <p class="text-gray-500 dark:text-gray-400">
+              📧
+              <a
+                href="mailto:luizmetec@hotmail.com"
+                class="text-blue-500 dark:text-blue-400 hover:underline"
+                >luizmetec@hotmail.com</a
+              >
+              | 📞 (12) 9 99602-0481
+            </p>
+          </div>
+          <div class="space-x-4">
+            <a
+              href="https://www.linkedin.com/in/luiz-mauro-rocha/"
+              target="_blank"
+              class="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400"
+              >LinkedIn</a
+            >
+            <a
+              href="https://github.com/LuizMauro"
+              target="_blank"
+              class="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400"
+              >GitHub</a
+            >
+          </div>
+        </div>
+      </header>
+
+      <!-- Divider -->
+      <hr class="border-gray-300 dark:border-gray-700 mb-6" />
+
+      <!-- Profile Section -->
+      <section class="mb-6">
+        <h2 class="text-2xl font-semibold mb-4">Sobre mim</h2>
+        <p class="text-gray-600 dark:text-gray-400">
+          Sou um Desenvolvedor Full Stack com mais de 4 anos de experiência.
+          Durante esse período, adquiri amplo conhecimento e vivência em
+          tecnologias como React, React Native, NestJS, TypeScript, JavaScript e
+          Golang. Além do conhecimento técnico, gosto muito de trabalhar em
+          equipe e me adapto rapidamente a novos desafios, valorizo a
+          comunicação clara, o aprendizado contínuo e busco sempre entregar
+          soluções que agreguem valor real aos projetos, promovendo uma
+          colaboração entre equipes.
+        </p>
+      </section>
+
+      <!-- Divider -->
+      <hr class="border-gray-300 dark:border-gray-700 mb-6" />
+
+      <!-- Skills Section -->
+      <section class="mb-6">
+        <h2 class="text-2xl font-semibold mb-4">Skills</h2>
+        <ul class="list-disc pl-5 text-gray-600 dark:text-gray-400">
+          <li>Linguagens: JavaScript, TypeScript, Go, Flutter</li>
+          <li>
+            Frameworks e Bibliotecas: React, React Native, Node.js, NestJS,
+            Material UI, Bootstrap, Chakra UI, Tailwind CSS
+          </li>
+          <li>Bancos de Dados: MongoDB, PostgreSQL, MySQL</li>
+          <li>Ferramentas: Git, GitLab, Docker, CI/CD</li>
+          <li>Metodologias: Agile, Scrum, Kanban</li>
+        </ul>
+      </section>
+
+      <!-- Divider -->
+      <hr class="border-gray-300 dark:border-gray-700 mb-6" />
+
+      <!-- Experience Section with Timeline -->
+      <section class="mb-6">
+        <h2 class="text-2xl font-semibold mb-4">Experiência</h2>
+        <div class="relative border-l border-gray-300 dark:border-gray-700">
+          <!-- Job 1 -->
+          <div class="mb-8 ml-6">
+            <span
+              class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full -left-3 ring-8 ring-gray-100 dark:ring-gray-900"
+            >
+              💼
+            </span>
+            <h3 class="text-lg font-semibold">
+              Full Stack Developer - Meta IT
+            </h3>
+            <time
+              class="block mb-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-400"
+              >2022 - Presente</time
+            >
+            <p class="text-base text-gray-600 dark:text-gray-400">
+              Desenvolvimento e manutenção de micro front-ends em ReactJS e
+              microserviços utilizando Node.js/NestJS no projeto Payly.
+              Colaboração com equipes multidisciplinares para garantir a entrega
+              de soluções escaláveis.
+            </p>
+          </div>
+          <!-- Job 2 -->
+          <div class="mb-8 ml-6">
+            <span
+              class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full -left-3 ring-8 ring-gray-100 dark:ring-gray-900"
+            >
+              💼
+            </span>
+            <h3 class="text-lg font-semibold">
+              Desenvolvedor - AMEX Comunicação, Marketing e Fundraising
+            </h3>
+            <time
+              class="block mb-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-400"
+              >2020 - 2022</time
+            >
+            <p class="text-base text-gray-600 dark:text-gray-400">
+              Manutenção de websites em PHP. Responsável pelo desenvolvimento do
+              front-end de um CRM com ReactJS, criação de um micro-serviço de
+              envios de e-mail integrando com MailChimp em NodeJS, e
+              desenvolvimento de um micro-serviço para desenhar e mesclar
+              boletos com cartas utilizando NodeJS.
+            </p>
+          </div>
+          <!-- Job 3 -->
+          <div class="mb-8 ml-6">
+            <span
+              class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full -left-3 ring-8 ring-gray-100 dark:ring-gray-900"
+            >
+              💼
+            </span>
+            <h3 class="text-lg font-semibold">Freelancer - Desenvolvedor</h3>
+            <time
+              class="block mb-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-400"
+              >2019 - Presente</time
+            >
+            <p class="text-base text-gray-600 dark:text-gray-400">
+              Criação de um aplicativo para um mestrando em psicologia e
+              desenvolvimento do aplicativo EasyFarm, implementando um sistema
+              offline-first, criando componentes personalizados e garantindo a
+              responsividade do app.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Divider -->
+      <hr class="border-gray-300 dark:border-gray-700 mb-6" />
+
+      <!-- Education Section with Timeline -->
+      <section class="mb-6">
+        <h2 class="text-2xl font-semibold mb-4">Formação</h2>
+        <div class="relative border-l border-gray-300 dark:border-gray-700">
+          <!-- Degree 1 -->
+          <div class="mb-8 ml-6">
+            <span
+              class="absolute flex items-center justify-center w-6 h-6 bg-green-100 dark:bg-green-900 rounded-full -left-3 ring-8 ring-gray-100 dark:ring-gray-900"
+            >
+              🎓
+            </span>
+            <h3 class="text-lg font-semibold">
+              Tecnólogo em Programação de Computadores - Aplicativos Específicos
+              - FATEC Guaratinguetá
+            </h3>
+            <time
+              class="block mb-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-400"
+              >2018 - 2020</time
+            >
+            <p class="text-base text-gray-600 dark:text-gray-400">
+              Curso focado no desenvolvimento de aplicativos específicos e
+              programação de computadores, proporcionando uma base sólida em
+              desenvolvimento de software e tecnologias modernas.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Divider -->
+      <!-- <hr class="border-gray-300 dark:border-gray-700 mb-6" /> -->
+
+      <!-- Projects Section -->
+      <!-- <section class="mb-6">
+        <h2 class="text-2xl font-semibold mb-4">Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div>
+            <h3 class="text-lg font-semibold">
+              Project 1: E-commerce Platform
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 mt-2">
+              Developed a fully functional e-commerce platform using React and
+              Node.js, with features like user authentication, product search,
+              and payment integration.
+            </p>
+            <a
+              href="https://github.com/LuizMauro/ecommerce"
+              class="text-blue-500 dark:text-blue-400 hover:underline mt-2 block"
+              >View on GitHub</a
+            >
+          </div>
+        </div>
+      </section> -->
+
+      <!-- Divider -->
+      <hr class="border-gray-300 dark:border-gray-700 mb-6" />
+
+      <!-- Contact Section -->
+      <section>
+        <h2 class="text-2xl font-semibold mb-4">Contato</h2>
+        <p class="text-gray-600 dark:text-gray-400">
+          Sinta-se à vontade para entrar em contato comigo pelo e-mail
+          <a
+            href="mailto:luizmetec@hotmail.com"
+            class="text-blue-500 dark:text-blue-400 hover:underline"
+            >luizmetec@hotmail.com</a
+          >.
+        </p>
+      </section>
+    </div>
+  </body>
+</html>
