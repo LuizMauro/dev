@@ -5,79 +5,322 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Luiz Mauro da Rocha Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script
-      src="https://kit.fontawesome.com/a076d05399.js"
-      crossorigin="anonymous"
-    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
     <script>
       tailwind.config = {
         darkMode: "class",
+        theme: {
+          extend: {
+            animation: {
+              "fade-in": "fadeIn 0.5s ease-in",
+            },
+            keyframes: {
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+            },
+          },
+        },
       };
 
       // Toggle between light and dark mode
       function toggleDarkMode() {
         const htmlElement = document.documentElement;
         const button = document.getElementById("button-dark-toggle");
-        const icon = document.getElementById("dark-mode-icon");
 
-        // Toggle the "dark" class on the HTML element
         htmlElement.classList.toggle("dark");
 
-        // Change button text and icon based on the current mode
+        // Salva a preferência
+        localStorage.setItem(
+          "darkMode",
+          htmlElement.classList.contains("dark")
+        );
+
         if (htmlElement.classList.contains("dark")) {
           button.textContent = "☀️ Tema Claro";
         } else {
           button.textContent = "🌙 Tema Escuro";
         }
       }
+
+      // Definindo a fonte Roboto
+      pdfMake.fonts = {
+        Roboto: {
+          normal:
+            "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Regular.ttf",
+          bold: "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Medium.ttf",
+          italics:
+            "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-Italic.ttf",
+          bolditalics:
+            "https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/fonts/Roboto/Roboto-MediumItalic.ttf",
+        },
+      };
+
+      function generatePDF() {
+        const docDefinition = {
+          defaultStyle: {
+            font: "Roboto",
+          },
+          content: [
+            // Cabeçalho
+            {
+              text: "Luiz Mauro da Rocha",
+              style: "header",
+              margin: [0, 0, 0, 10],
+            },
+            {
+              text: "Full Stack Developer",
+              style: "subheader",
+              margin: [0, 0, 0, 20],
+            },
+            {
+              columns: [
+                {
+                  width: "auto",
+                  text: [
+                    { text: "E-mail: ", bold: true },
+                    {
+                      text: "luizmetec@hotmail.com",
+                      color: "#666666",
+                      link: "mailto:luizmetec@hotmail.com",
+                    },
+                    { text: "\n" },
+                    { text: "WhatsApp: ", bold: true },
+                    {
+                      text: "(12) 9 99602-0481",
+                      color: "#666666",
+                      link: "https://wa.me/5512996020481",
+                      decoration: "underline",
+                    },
+                    { text: "\n" },
+                    { text: "Links: ", bold: true },
+                    {
+                      text: "linkedin.com/in/luiz-mauro-rocha",
+                      color: "#666666",
+                      link: "https://linkedin.com/in/luiz-mauro-rocha",
+                      decoration: "underline",
+                    },
+                    { text: " | ", color: "#666666" },
+                    {
+                      text: "github.com/LuizMauro",
+                      color: "#666666",
+                      link: "https://github.com/LuizMauro",
+                      decoration: "underline",
+                    },
+                  ],
+                },
+              ],
+              margin: [0, 0, 0, 10],
+            },
+
+            // Sobre
+            {
+              text: "Sobre mim",
+              style: "sectionHeader",
+            },
+            {
+              text: "Desenvolvedor Full Stack com mais de 4 anos de experiência. Especializado em React, React Native, NestJS, TypeScript, JavaScript e Golang. Focado em comunicação clara, aprendizado contínuo e entrega de soluções de valor.",
+              margin: [0, 0, 0, 10],
+            },
+
+            // Competências Técnicas
+            {
+              text: "Competências Técnicas",
+              style: "sectionHeader",
+            },
+            {
+              columns: [
+                {
+                  width: "auto",
+                  text: [
+                    { text: "Linguagens: ", bold: true },
+                    { text: "JavaScript, TypeScript, Go, Flutter\n\n" },
+                    { text: "Frameworks: ", bold: true },
+                    { text: "React, React Native, Node.js, NestJS\n\n" },
+                    { text: "Bancos de Dados: ", bold: true },
+                    { text: "MongoDB, PostgreSQL, MySQL" },
+                  ],
+                },
+              ],
+              margin: [0, 0, 0, 20],
+            },
+
+            // Experiência Profissional
+            {
+              text: "Experiência Profissional",
+              style: "sectionHeader",
+            },
+            {
+              text: "Full Stack Developer - Meta IT",
+              style: "jobTitle",
+            },
+            {
+              text: "2022 - Presente",
+              style: "period",
+            },
+            {
+              text: "Desenvolvimento e manutenção de micro front-ends em ReactJS e microserviços utilizando Node.js/NestJS no projeto Payly. Colaboração com equipes multidisciplinares para garantir a entrega de soluções escaláveis.",
+              margin: [0, 0, 0, 20],
+            },
+
+            {
+              text: "Desenvolvedor - AMEX Comunicação, Marketing e Fundraising",
+              style: "jobTitle",
+            },
+            {
+              text: "2020 - 2022",
+              style: "period",
+            },
+            {
+              text: "Manutenção de websites em PHP, desenvolvimento front-end de CRM com ReactJS, criação de micro-serviços para envios de e-mail e processamento de boletos utilizando NodeJS.",
+              margin: [0, 0, 0, 20],
+            },
+
+            // Formação
+            {
+              text: "Formação",
+              style: "sectionHeader",
+            },
+            {
+              text: "Tecnólogo em Programação de Computadores",
+              style: "jobTitle",
+            },
+            {
+              text: "FATEC Guaratinguetá | 2018 - 2020",
+              style: "period",
+              margin: [0, 0, 0, 20],
+            },
+          ],
+          styles: {
+            header: {
+              fontSize: 24,
+              bold: true,
+              color: "#2563eb",
+            },
+            subheader: {
+              fontSize: 16,
+              color: "#666666",
+            },
+            sectionHeader: {
+              fontSize: 18,
+              bold: true,
+              color: "#2563eb",
+              margin: [0, 20, 0, 10],
+            },
+            jobTitle: {
+              fontSize: 14,
+              bold: true,
+              color: "#1e40af",
+              margin: [0, 5, 0, 5],
+            },
+            period: {
+              fontSize: 12,
+              color: "#666666",
+              margin: [0, 0, 0, 5],
+            },
+          },
+        };
+
+        pdfMake.createPdf(docDefinition).download("curriculo-luiz-mauro.pdf");
+      }
     </script>
   </head>
   <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-300">
     <!-- Dark Mode Toggle Button -->
     <div class="max-w-4xl mx-auto p-6">
-      <div class="flex justify-end p-4">
+      <div class="flex justify-end gap-4 p-4">
+        <button
+          onclick="generatePDF()"
+          class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg flex items-center transition-all duration-300 hover:shadow-lg"
+        >
+          <i class="fas fa-file-pdf mr-2"></i>
+          Baixar PDF
+        </button>
         <button
           id="button-dark-toggle"
           onclick="toggleDarkMode()"
-          class="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center"
+          class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white px-4 py-2 rounded-lg flex items-center transition-all duration-300 hover:shadow-lg"
         >
-          <i id="dark-mode-icon" class="fas fa-sun mr-2"></i>
           ☀️ Tema Claro
         </button>
       </div>
     </div>
 
     <!-- Main Container -->
-    <div class="max-w-4xl mx-auto p-6">
+    <div id="content-to-pdf" class="max-w-4xl mx-auto p-6">
       <!-- Header -->
-      <header class="p-6 mb-6">
-        <div class="flex items-center justify-between">
-          <div>
-            <h1 class="text-4xl font-bold">Luiz Mauro da Rocha</h1>
-            <p class="text-gray-600 dark:text-gray-400">Full Stack Developer</p>
-            <p class="text-gray-500 dark:text-gray-400">
-              📧
+      <header
+        class="p-6 mb-6 animate-fade-in bg-white dark:bg-gray-800 rounded-xl shadow-lg"
+      >
+        <div
+          class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0"
+        >
+          <!-- Profile Info -->
+          <div class="text-center md:text-left space-y-3">
+            <div class="space-y-2">
+              <h1
+                class="text-4xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent inline-block"
+              >
+                Luiz Mauro da Rocha
+              </h1>
+              <p class="text-xl text-gray-600 dark:text-gray-400 font-medium">
+                <span class="inline-flex items-center">
+                  <i class="fas fa-code mr-2 text-blue-500"></i>
+                  Full Stack Developer
+                </span>
+              </p>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="flex flex-wrap justify-center md:justify-start gap-4">
               <a
                 href="mailto:luizmetec@hotmail.com"
-                class="text-blue-500 dark:text-blue-400 hover:underline"
-                >luizmetec@hotmail.com</a
+                class="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors group"
               >
-              | 📞 (12) 9 99602-0481
-            </p>
+                <span
+                  class="bg-blue-100 dark:bg-blue-900 p-2 rounded-lg group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-colors"
+                >
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <span class="group-hover:underline">luizmetec@hotmail.com</span>
+              </a>
+              <a
+                href="tel:+5512996020481"
+                class="flex items-center space-x-2 text-gray-600 dark:text-gray-400 hover:text-blue-500 transition-colors group"
+              >
+                <span
+                  class="bg-blue-100 dark:bg-blue-900 p-2 rounded-lg group-hover:bg-blue-200 dark:group-hover:bg-blue-800 transition-colors"
+                >
+                  <i class="fas fa-phone"></i>
+                </span>
+                <span class="group-hover:underline">(12) 9 99602-0481</span>
+              </a>
+            </div>
           </div>
-          <div class="space-x-4">
+
+          <!-- Social Links -->
+          <div class="flex space-x-4">
             <a
               href="https://www.linkedin.com/in/luiz-mauro-rocha/"
               target="_blank"
-              class="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400"
-              >LinkedIn</a
+              class="bg-gray-100 dark:bg-gray-700 p-3 rounded-lg text-2xl text-gray-600 dark:text-gray-400 hover:bg-blue-100 dark:hover:bg-blue-900 hover:text-blue-500 transition-all duration-300 transform hover:scale-110"
             >
+              <i class="fab fa-linkedin"></i>
+            </a>
             <a
               href="https://github.com/LuizMauro"
               target="_blank"
-              class="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-blue-400"
-              >GitHub</a
+              class="bg-gray-100 dark:bg-gray-700 p-3 rounded-lg text-2xl text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-600 hover:text-gray-800 dark:hover:text-white transition-all duration-300 transform hover:scale-110"
             >
+              <i class="fab fa-github"></i>
+            </a>
           </div>
         </div>
       </header>
@@ -88,34 +331,65 @@
       <!-- Profile Section -->
       <section class="mb-6">
         <h2 class="text-2xl font-semibold mb-4">Sobre mim</h2>
-        <p class="text-gray-600 dark:text-gray-400">
-          Sou um Desenvolvedor Full Stack com mais de 4 anos de experiência.
-          Durante esse período, adquiri amplo conhecimento e vivência em
-          tecnologias como React, React Native, NestJS, TypeScript, JavaScript e
-          Golang. Além do conhecimento técnico, gosto muito de trabalhar em
-          equipe e me adapto rapidamente a novos desafios, valorizo a
-          comunicação clara, o aprendizado contínuo e busco sempre entregar
-          soluções que agreguem valor real aos projetos, promovendo uma
-          colaboração entre equipes.
-        </p>
+        <div
+          class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+        >
+          <div class="flex items-start space-x-4">
+            <div class="flex-1">
+              <p class="text-gray-600 dark:text-gray-400">
+                Sou um Desenvolvedor Full Stack com mais de 4 anos de
+                experiência. Durante esse período, adquiri amplo conhecimento e
+                vivência em tecnologias como React, React Native, NestJS,
+                TypeScript, JavaScript e Golang. Além do conhecimento técnico,
+                gosto muito de trabalhar em equipe e me adapto rapidamente a
+                novos desafios, valorizo a comunicação clara, o aprendizado
+                contínuo e busco sempre entregar soluções que agreguem valor
+                real aos projetos, promovendo uma colaboração entre equipes.
+              </p>
+            </div>
+          </div>
+        </div>
       </section>
 
       <!-- Divider -->
       <hr class="border-gray-300 dark:border-gray-700 mb-6" />
 
       <!-- Skills Section -->
-      <section class="mb-6">
+      <section class="mb-6 animate-fade-in">
         <h2 class="text-2xl font-semibold mb-4">Skills</h2>
-        <ul class="list-disc pl-5 text-gray-600 dark:text-gray-400">
-          <li>Linguagens: JavaScript, TypeScript, Go, Flutter</li>
-          <li>
-            Frameworks e Bibliotecas: React, React Native, Node.js, NestJS,
-            Material UI, Bootstrap, Chakra UI, Tailwind CSS
-          </li>
-          <li>Bancos de Dados: MongoDB, PostgreSQL, MySQL</li>
-          <li>Ferramentas: Git, GitLab, Docker, CI/CD</li>
-          <li>Metodologias: Agile, Scrum, Kanban</li>
-        </ul>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div
+            class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          >
+            <h3 class="font-semibold mb-2">
+              <i class="fas fa-code mr-2 text-blue-500"></i>Linguagens
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              JavaScript, TypeScript, Go, Flutter
+            </p>
+          </div>
+          <div
+            class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          >
+            <h3 class="font-semibold mb-2">
+              <i class="fas fa-layer-group mr-2 text-green-500"></i>Frameworks
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              React, React Native, Node.js, NestJS
+            </p>
+          </div>
+          <div
+            class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+          >
+            <h3 class="font-semibold mb-2">
+              <i class="fas fa-database mr-2 text-purple-500"></i>Bancos de
+              Dados
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400">
+              MongoDB, PostgreSQL, MySQL
+            </p>
+          </div>
+        </div>
       </section>
 
       <!-- Divider -->
@@ -124,68 +398,154 @@
       <!-- Experience Section with Timeline -->
       <section class="mb-6">
         <h2 class="text-2xl font-semibold mb-4">Experiência</h2>
-        <div class="relative border-l border-gray-300 dark:border-gray-700">
+        <div class="relative border-l-2 border-blue-500 dark:border-blue-400">
           <!-- Job 1 -->
-          <div class="mb-8 ml-6">
+          <div
+            class="mb-8 ml-6 transform transition-all duration-300 hover:translate-x-2"
+          >
             <span
-              class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full -left-3 ring-8 ring-gray-100 dark:ring-gray-900"
+              class="absolute flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full -left-4 ring-4 ring-white dark:ring-gray-900"
             >
-              💼
+              <i class="fas fa-briefcase text-white"></i>
             </span>
-            <h3 class="text-lg font-semibold">
-              Full Stack Developer - Meta IT
-            </h3>
-            <time
-              class="block mb-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-400"
-              >2022 - Presente</time
-            >
-            <p class="text-base text-gray-600 dark:text-gray-400">
-              Desenvolvimento e manutenção de micro front-ends em ReactJS e
-              microserviços utilizando Node.js/NestJS no projeto Payly.
-              Colaboração com equipes multidisciplinares para garantir a entrega
-              de soluções escaláveis.
-            </p>
+            <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+              <div class="flex flex-wrap justify-between items-center mb-2">
+                <h3
+                  class="text-lg font-semibold text-blue-500 dark:text-blue-400"
+                >
+                  Full Stack Developer
+                </h3>
+                <span class="text-sm text-gray-500 dark:text-gray-400">
+                  <i class="far fa-calendar-alt mr-2"></i>2022 - Presente
+                </span>
+              </div>
+              <div class="mb-2">
+                <span class="text-gray-700 dark:text-gray-300 font-medium">
+                  <i class="fas fa-building mr-2"></i>Meta IT
+                </span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 mb-3">
+                Desenvolvimento e manutenção de micro front-ends em ReactJS e
+                microserviços utilizando Node.js/NestJS no projeto Payly.
+                Colaboração com equipes multidisciplinares para garantir a
+                entrega de soluções escaláveis.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full"
+                  >ReactJS</span
+                >
+                <span
+                  class="px-3 py-1 text-sm bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full"
+                  >Node.js</span
+                >
+                <span
+                  class="px-3 py-1 text-sm bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full"
+                  >NestJS</span
+                >
+                <span
+                  class="px-3 py-1 text-sm bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-full"
+                  >TypeScript</span
+                >
+              </div>
+            </div>
           </div>
+
           <!-- Job 2 -->
-          <div class="mb-8 ml-6">
+          <div
+            class="mb-8 ml-6 transform transition-all duration-300 hover:translate-x-2"
+          >
             <span
-              class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full -left-3 ring-8 ring-gray-100 dark:ring-gray-900"
+              class="absolute flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full -left-4 ring-4 ring-white dark:ring-gray-900"
             >
-              💼
+              <i class="fas fa-briefcase text-white"></i>
             </span>
-            <h3 class="text-lg font-semibold">
-              Desenvolvedor - AMEX Comunicação, Marketing e Fundraising
-            </h3>
-            <time
-              class="block mb-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-400"
-              >2020 - 2022</time
-            >
-            <p class="text-base text-gray-600 dark:text-gray-400">
-              Manutenção de websites em PHP. Responsável pelo desenvolvimento do
-              front-end de um CRM com ReactJS, criação de um micro-serviço de
-              envios de e-mail integrando com MailChimp em NodeJS, e
-              desenvolvimento de um micro-serviço para desenhar e mesclar
-              boletos com cartas utilizando NodeJS.
-            </p>
+            <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+              <div class="flex flex-wrap justify-between items-center mb-2">
+                <h3
+                  class="text-lg font-semibold text-blue-500 dark:text-blue-400"
+                >
+                  Desenvolvedor
+                </h3>
+                <span class="text-sm text-gray-500 dark:text-gray-400">
+                  <i class="far fa-calendar-alt mr-2"></i>2020 - 2022
+                </span>
+              </div>
+              <div class="mb-2">
+                <span class="text-gray-700 dark:text-gray-300 font-medium">
+                  <i class="fas fa-building mr-2"></i>AMEX Comunicação,
+                  Marketing e Fundraising
+                </span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 mb-3">
+                Manutenção de websites em PHP. Responsável pelo desenvolvimento
+                do front-end de um CRM com ReactJS, criação de um micro-serviço
+                de envios de e-mail integrando com MailChimp em NodeJS, e
+                desenvolvimento de um micro-serviço para desenhar e mesclar
+                boletos com cartas utilizando NodeJS.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full"
+                  >ReactJS</span
+                >
+                <span
+                  class="px-3 py-1 text-sm bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full"
+                  >Node.js</span
+                >
+                <span
+                  class="px-3 py-1 text-sm bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full"
+                  >PHP</span
+                >
+                <span
+                  class="px-3 py-1 text-sm bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 rounded-full"
+                  >MailChimp</span
+                >
+              </div>
+            </div>
           </div>
+
           <!-- Job 3 -->
-          <div class="mb-8 ml-6">
+          <div
+            class="mb-8 ml-6 transform transition-all duration-300 hover:translate-x-2"
+          >
             <span
-              class="absolute flex items-center justify-center w-6 h-6 bg-blue-100 dark:bg-blue-900 rounded-full -left-3 ring-8 ring-gray-100 dark:ring-gray-900"
+              class="absolute flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full -left-4 ring-4 ring-white dark:ring-gray-900"
             >
-              💼
+              <i class="fas fa-laptop-code text-white"></i>
             </span>
-            <h3 class="text-lg font-semibold">Freelancer - Desenvolvedor</h3>
-            <time
-              class="block mb-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-400"
-              >2019 - Presente</time
-            >
-            <p class="text-base text-gray-600 dark:text-gray-400">
-              Criação de um aplicativo para um mestrando em psicologia e
-              desenvolvimento do aplicativo EasyFarm, implementando um sistema
-              offline-first, criando componentes personalizados e garantindo a
-              responsividade do app.
-            </p>
+            <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+              <div class="flex flex-wrap justify-between items-center mb-2">
+                <h3
+                  class="text-lg font-semibold text-blue-500 dark:text-blue-400"
+                >
+                  Freelancer - Desenvolvedor
+                </h3>
+                <span class="text-sm text-gray-500 dark:text-gray-400">
+                  <i class="far fa-calendar-alt mr-2"></i>2019 - Presente
+                </span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 mb-3">
+                Criação de um aplicativo para um mestrando em psicologia e
+                desenvolvimento do aplicativo EasyFarm, implementando um sistema
+                offline-first, criando componentes personalizados e garantindo a
+                responsividade do app.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full"
+                  >React Native</span
+                >
+                <span
+                  class="px-3 py-1 text-sm bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full"
+                  >Mobile Development</span
+                >
+                <span
+                  class="px-3 py-1 text-sm bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-full"
+                  >Offline-First</span
+                >
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -196,27 +556,55 @@
       <!-- Education Section with Timeline -->
       <section class="mb-6">
         <h2 class="text-2xl font-semibold mb-4">Formação</h2>
-        <div class="relative border-l border-gray-300 dark:border-gray-700">
+        <div class="relative border-l-2 border-green-500 dark:border-green-400">
           <!-- Degree 1 -->
-          <div class="mb-8 ml-6">
+          <div
+            class="mb-8 ml-6 transform transition-all duration-300 hover:translate-x-2"
+          >
             <span
-              class="absolute flex items-center justify-center w-6 h-6 bg-green-100 dark:bg-green-900 rounded-full -left-3 ring-8 ring-gray-100 dark:ring-gray-900"
+              class="absolute flex items-center justify-center w-8 h-8 bg-green-500 rounded-full -left-4 ring-4 ring-white dark:ring-gray-900"
             >
-              🎓
+              <i class="fas fa-graduation-cap text-white"></i>
             </span>
-            <h3 class="text-lg font-semibold">
-              Tecnólogo em Programação de Computadores - Aplicativos Específicos
-              - FATEC Guaratinguetá
-            </h3>
-            <time
-              class="block mb-2 text-sm font-normal leading-none text-gray-500 dark:text-gray-400"
-              >2018 - 2020</time
-            >
-            <p class="text-base text-gray-600 dark:text-gray-400">
-              Curso focado no desenvolvimento de aplicativos específicos e
-              programação de computadores, proporcionando uma base sólida em
-              desenvolvimento de software e tecnologias modernas.
-            </p>
+            <div class="p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
+              <div class="flex flex-wrap justify-between items-center mb-2">
+                <h3
+                  class="text-lg font-semibold text-green-500 dark:text-green-400"
+                >
+                  Tecnólogo em Programação de Computadores
+                </h3>
+                <span class="text-sm text-gray-500 dark:text-gray-400">
+                  <i class="far fa-calendar-alt mr-2"></i>2018 - 2020
+                </span>
+              </div>
+              <div class="mb-2">
+                <span class="text-gray-700 dark:text-gray-300 font-medium">
+                  <i class="fas fa-university mr-2"></i>FATEC Guaratinguetá
+                </span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-400 mb-3">
+                Curso focado no desenvolvimento de aplicativos específicos e
+                programação de computadores, proporcionando uma base sólida em
+                desenvolvimento de software e tecnologias modernas.
+              </p>
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="px-3 py-1 text-sm bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full"
+                >
+                  Desenvolvimento de Software
+                </span>
+                <span
+                  class="px-3 py-1 text-sm bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 rounded-full"
+                >
+                  Programação
+                </span>
+                <span
+                  class="px-3 py-1 text-sm bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 rounded-full"
+                >
+                  Tecnólogo
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -245,22 +633,6 @@
           </div>
         </div>
       </section> -->
-
-      <!-- Divider -->
-      <hr class="border-gray-300 dark:border-gray-700 mb-6" />
-
-      <!-- Contact Section -->
-      <section>
-        <h2 class="text-2xl font-semibold mb-4">Contato</h2>
-        <p class="text-gray-600 dark:text-gray-400">
-          Sinta-se à vontade para entrar em contato comigo pelo e-mail
-          <a
-            href="mailto:luizmetec@hotmail.com"
-            class="text-blue-500 dark:text-blue-400 hover:underline"
-            >luizmetec@hotmail.com</a
-          >.
-        </p>
-      </section>
     </div>
   </body>
 </html>
